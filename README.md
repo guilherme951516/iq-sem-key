@@ -19,7 +19,7 @@ O atalho intermediário `KeylessTinyGui` encontrado durante a análise é reconh
 ## Verificação
 
 - 12 testes do resolver: detecção, lugar principal, cache, atualização, erros HTTP/JSON, seleção do jogo correto, atalho intermediário, ciclos e compilação.
-- 2 cenários de integração da interface: abertura sem chamadas de Key/HWID e manutenção da janela quando a rota está indisponível.
+- 5 cenários de integração da interface: abertura sem chamadas de Key/HWID, rota indisponível, executor com apenas `HttpGet`, `fluxus.request` e seleção de `http_request` quando `request` não é função.
 - Compilação dos módulos próprios e da VM visual modificada.
 - Releitura das 364 funções da VM visual, confirmando que os bytes de instruções foram preservados. Seis constantes visuais/de links foram atualizadas, incluindo o botão que copia o carregador para este GitHub.
 

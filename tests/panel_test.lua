@@ -1,7 +1,7 @@
 local start = dofile("panel.lua")
 local Resolver = dofile("resolver.lua")
 local ROOT = "https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/"
-local function scenario(available)
+local function scenario(available, mode)
     local calls, buttons, labels, clipboard = {}, {}, {}, nil
     local library = {Options = {}, unloaded = false}
     local unloadedCallback
@@ -50,13 +50,19 @@ local function scenario(available)
         if body == "route" then return {["10"]="https://code/script"} end
         error("invalid JSON")
     end
-    _G.game = {PlaceId=10, GameId=20}
+    _G.game = {PlaceId=mode=="http_get" and 99 or 10, GameId=20}
     function game:IsLoaded() return true end
     function game:GetService(name)
         return ({Players={LocalPlayer=player},HttpService=httpService,StarterGui={SetCore=function() end}})[name]
     end
-    function game:HttpGet(url) assert(url==ROOT.."catalog.json"); return "catalog" end
-    _G.request = function(options)
+    function game:HttpGet(url)
+        if url==ROOT.."catalog.json" then return "catalog" end
+        if url:find("/api/roblox?gameId=99",1,true) then error("HTTP 404 (Not Found)") end
+        if url:find("/api/roblox?gameId=10",1,true) then return "route" end
+        if url=="https://code/script" then return "mock-payload" end
+        error("Unexpected HttpGet: "..url)
+    end
+    local requestMock = function(options)
         assert(options.Method=="GET", "Unexpected non-lookup request")
         calls[#calls+1] = options.Url
         if options.Url:find("/api/roblox?gameId=10",1,true) then
@@ -65,6 +71,10 @@ local function scenario(available)
         if options.Url=="https://code/script" then return {StatusCode=200,Body="mock-payload"} end
         error("Unexpected request: "..options.Url)
     end
+    _G.request, _G.http_request, _G.fluxus = nil, nil, nil
+    if mode=="fluxus" then _G.fluxus={request=requestMock}
+    elseif mode=="http_request" then _G.request={}; _G.http_request=requestMock
+    elseif mode~="http_get" then _G.request=requestMock end
     _G.loadstring = function(source)
         assert(source=="mock-payload")
         return function() assert(library.unloaded); calls[#calls+1]="payload-started" end
@@ -99,3 +109,9 @@ assert(scenario(true))
 print("OK original panel integration, gold theme, our GitHub copy and open without Key calls")
 assert(scenario(false))
 print("OK unavailable route leaves the panel open and does not run code")
+assert(scenario(true,"http_get"))
+print("OK HttpGet-only executor recognizes 404 and resolves the canonical place")
+assert(scenario(true,"fluxus"))
+print("OK Fluxus request compatibility")
+assert(scenario(true,"http_request"))
+print("OK non-function request does not mask a valid http_request function")

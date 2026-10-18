@@ -32,13 +32,22 @@ return function(context)
         if env.__IQ_OURS_PANEL == Library then env.__IQ_OURS_PANEL = nil end
     end)
 
-    local requestFn = request or http_request or (syn and syn.request) or (http and http.request)
+    local requestFn
+    if type(request) == "function" then requestFn = request
+    elseif type(http_request) == "function" then requestFn = http_request
+    elseif syn and type(syn.request) == "function" then requestFn = syn.request
+    elseif http and type(http.request) == "function" then requestFn = http.request
+    elseif fluxus and type(fluxus.request) == "function" then requestFn = fluxus.request end
     local function transport(url)
         if type(requestFn) == "function" then
             local response = requestFn({Url = url, Method = "GET"})
-            return tonumber(response.StatusCode or response.Status or response.status_code), response.Body or response.body
+            return tonumber(response.StatusCode or response.status_code or response.statusCode or response.Status or response.status), response.Body or response.body
         end
-        return 200, game:HttpGet(url, true)
+        local ok, body = pcall(function() return game:HttpGet(url, true) end)
+        if ok then return 200, body end
+        local message = tostring(body)
+        if message:find("404", 1, true) then return 404, message end
+        return 0, message
     end
     local function catalog()
         if type(requestFn) == "function" and M.GAMES_RPC_URL and M.GAMES_RPC_ANON then
@@ -46,8 +55,8 @@ return function(context)
                 local response = requestFn({Url = M.GAMES_RPC_URL, Method = "POST", Body = "{}",
                     Headers = {["Content-Type"] = "application/json", apikey = M.GAMES_RPC_ANON,
                         Authorization = "Bearer " .. M.GAMES_RPC_ANON}})
-                assert(tonumber(response.StatusCode) == 200)
-                return HttpService:JSONDecode(response.Body)
+                assert(tonumber(response.StatusCode or response.status_code or response.statusCode or response.Status or response.status) == 200)
+                return HttpService:JSONDecode(response.Body or response.body)
             end)
             if ok and type(value) == "table" then return value end
         end
