@@ -26,7 +26,7 @@ def patch(source_path, output_path, audit_path):
     key_var, decode_function, encoded_key = key_match.groups()
     replacements = {
         b"https://raw.githubusercontent.com/checkurasshole/Script/main/IQ":
-            b"https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua",
+            b"https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua?v=20261018.2",
         b"https://keys.combowick.com": b"https://github.com/guilherme951516/iq-sem-key",
         b"Key required": b"Consultar disponibilidade",
         "Precisa de chave".encode(): b"Consultar disponibilidade",

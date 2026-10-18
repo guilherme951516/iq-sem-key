@@ -14,11 +14,11 @@ return function(context)
     local M = context.load("vendor/combowick_module.lua")
     assert(type(M) == "table", "[IQ] O modulo visual nao carregou neste executor.")
     M.LANG = "pt"
-    M.EXIST_URL = context.rootUrl .. "IQ.lua"
+    M.EXIST_URL = context.entryUrl or (context.rootUrl .. "IQ.lua")
     M.WEBSITE_URL = "https://github.com/guilherme951516/iq-sem-key"
     M.showKeyPrompt = function() end
     M.reloadExist = function()
-        local chunk = assert(loadstring(game:HttpGet(context.rootUrl .. "IQ.lua", true)))
+        local chunk = assert(loadstring(game:HttpGet(M.EXIST_URL, true)))
         return chunk()
     end
 
@@ -61,7 +61,8 @@ return function(context)
             if ok and type(value) == "table" then return value end
         end
         local ok, value = pcall(function()
-            return HttpService:JSONDecode(game:HttpGet(context.rootUrl .. "catalog.json", true))
+            local url = context.resource and context.resource("catalog.json") or (context.rootUrl .. "catalog.json")
+            return HttpService:JSONDecode(game:HttpGet(url, true))
         end)
         return ok and type(value) == "table" and value or {}
     end
@@ -162,7 +163,7 @@ return function(context)
     openGroup:AddDivider()
     openGroup:AddButton({Text = "Copiar nossa versao", Func = function()
         if setclipboard then
-            setclipboard('loadstring(game:HttpGet("' .. context.rootUrl .. 'IQ.lua"))()')
+            setclipboard('loadstring(game:HttpGet("' .. M.EXIST_URL .. '"))()')
             notify("Carregador copiado.")
         end
     end})

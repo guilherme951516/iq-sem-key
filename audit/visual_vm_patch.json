@@ -1,6 +1,6 @@
 {
   "source_sha256": "04be74c22bb6d89a13c320f8a2c22619835a967512c104f3a92b4b5a834e6dda",
-  "result_sha256": "b75c54b9abb2145a19725f75eb8c6027aa4a2a0c7bc036888c34ee9683ccc460",
+  "result_sha256": "8b8e64a3b3c6e4e068554521f969b829f7eac434c08462789dc89218cbc8b366",
   "functions_verified": 364,
   "instruction_bytes_unchanged": true,
   "changes": [
@@ -32,7 +32,7 @@
     {
       "prototype": 214,
       "before": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/checkurasshole/Script/main/IQ\"))()",
-      "after": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua\"))()"
+      "after": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua?v=20261018.2\"))()"
     }
   ]
 }

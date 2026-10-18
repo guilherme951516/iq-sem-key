@@ -18,5 +18,8 @@
     "http_request",
     "fluxus.request",
     "game:HttpGet with 404 canonical-place fallback"
-  ]
+  ],
+  "entry_integration_tests_passed": 1,
+  "versioned_dependency_urls": true,
+  "release": "20261018.2"
 }

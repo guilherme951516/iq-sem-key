@@ -3,10 +3,12 @@
 Mantém a janela COMBOWICK, o módulo visual, as abas de informações e jogos, o tema dourado e as configurações da interface. A área de Key foi substituída por **Detectar novamente**, **Abrir painel** e **Copiar nossa versão**.
 
 ```lua
-loadstring(game:HttpGet("https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua?v=20261018.2"))()
 ```
 
 O painel detecta o `PlaceId` atual. Quando necessário, usa o `GameId` e o catálogo para tentar o lugar principal do mesmo jogo. A detecção começa automaticamente; o script do jogo só é iniciado ao clicar em **Abrir painel**.
+
+Os arquivos do carregador recebem a versão na URL para evitar que o cache devolva uma interface antiga depois de uma atualização.
 
 ## Caminho de carregamento
 
@@ -20,6 +22,7 @@ O atalho intermediário `KeylessTinyGui` encontrado durante a análise é reconh
 
 - 12 testes do resolver: detecção, lugar principal, cache, atualização, erros HTTP/JSON, seleção do jogo correto, atalho intermediário, ciclos e compilação.
 - 5 cenários de integração da interface: abertura sem chamadas de Key/HWID, rota indisponível, executor com apenas `HttpGet`, `fluxus.request` e seleção de `http_request` quando `request` não é função.
+- 1 teste de inicialização que confere a versão em cada URL de dependência e no carregador copiado.
 - Compilação dos módulos próprios e da VM visual modificada.
 - Releitura das 364 funções da VM visual, confirmando que os bytes de instruções foram preservados. Seis constantes visuais/de links foram atualizadas, incluindo o botão que copia o carregador para este GitHub.
 
@@ -38,5 +41,5 @@ O módulo visual foi preservado e suas constantes foram regravadas com correçã
 Para executar os testes locais em um ambiente com a biblioteca Lua 5.4:
 
 ```text
-python tools/run_lua.py tests/resolver_test.lua tests/panel_test.lua
+python tools/run_lua.py tests/resolver_test.lua tests/panel_test.lua tests/entry_test.lua
 ```

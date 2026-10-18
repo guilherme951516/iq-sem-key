@@ -1,6 +1,7 @@
 local start = dofile("panel.lua")
 local Resolver = dofile("resolver.lua")
 local ROOT = "https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/"
+local ENTRY = ROOT .. "IQ.lua?v=20261018.2"
 local function scenario(available, mode)
     local calls, buttons, labels, clipboard = {}, {}, {}, nil
     local library = {Options = {}, unloaded = false}
@@ -84,7 +85,7 @@ local function scenario(available, mode)
     _G.setclipboard = function(value) clipboard=value end
     _G.getgenv = function() return _G end
     _G.warn = function() end
-    local context = {rootUrl=ROOT,load=function(path)
+    local context = {rootUrl=ROOT,entryUrl=ENTRY,load=function(path)
         if path=="vendor/combowick_module.lua" then return module end
         if path=="vendor/obsidian/Library.lua" then return library end
         if path=="resolver.lua" then return Resolver end
@@ -95,7 +96,7 @@ local function scenario(available, mode)
     assert(result.Tabs.Open and result.Tabs.Games and not result.Tabs.Key)
     assert(buttons["Abrir painel"] and buttons["Atualizar deteccao"])
     buttons["Copiar nossa versao"]()
-    assert(clipboard=='loadstring(game:HttpGet("'..ROOT..'IQ.lua"))()')
+    assert(clipboard=='loadstring(game:HttpGet("'..ENTRY..'"))()')
     local hasGold=false
     for _,call in ipairs(calls) do if call=="gold-theme" then hasGold=true end end
     assert(hasGold)
