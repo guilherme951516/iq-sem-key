@@ -1,0 +1,35 @@
+{
+  "checked_at": "2026-10-18T22:06:36.343571+00:00",
+  "endpoint": "https://combo0-chroncile.vercel.app/api/roblox?gameId=",
+  "checks": [
+    {
+      "place_id": "121238214998290",
+      "status": 200,
+      "script_url": "https://raw.githubusercontent.com/checkurasshole/Script/refs/heads/main/empire",
+      "catalog_free": false,
+      "key_sent": false
+    },
+    {
+      "place_id": "18209375211",
+      "status": 200,
+      "catalog_free": false,
+      "key_sent": false,
+      "script_url": "https://raw.githubusercontent.com/checkurasshole/Script/refs/heads/main/FireTouchIntrest%20Universal"
+    },
+    {
+      "place_id": "131008473296170",
+      "status": 200,
+      "catalog_free": false,
+      "key_sent": false,
+      "script_url": "https://raw.githubusercontent.com/checkurasshole/Script/refs/heads/main/howcolorful"
+    },
+    {
+      "place_id": "2454499969",
+      "status": 404,
+      "catalog_free": true,
+      "key_sent": false,
+      "response": "{\"error\":\"No active script found for this game ID\"}"
+    }
+  ],
+  "runtime_execution_performed": false
+}

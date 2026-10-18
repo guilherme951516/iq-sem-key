@@ -1,0 +1,24 @@
+{
+  "obsidian_commit": "82d402b5de7d8903915f1afe99b5b7e340e7cd28",
+  "files": [
+    {
+      "path": "vendor/obsidian/Library.lua",
+      "url": "https://raw.githubusercontent.com/deividcomsono/Obsidian/82d402b5de7d8903915f1afe99b5b7e340e7cd28/Library.lua",
+      "sha256": "21ce6a1f57abdf6aa6653a3b11810aa85163b3616f5e1a4ca45d245bf996afe9",
+      "bytes": 500790
+    },
+    {
+      "path": "vendor/obsidian/addons/ThemeManager.lua",
+      "url": "https://raw.githubusercontent.com/deividcomsono/Obsidian/82d402b5de7d8903915f1afe99b5b7e340e7cd28/addons/ThemeManager.lua",
+      "sha256": "54d5475d85d2075f0c6ddb5a50d3bfe7d77001cde43f9efed9bddd42f5c095ed",
+      "bytes": 38510
+    },
+    {
+      "path": "vendor/obsidian/addons/SaveManager.lua",
+      "url": "https://raw.githubusercontent.com/deividcomsono/Obsidian/82d402b5de7d8903915f1afe99b5b7e340e7cd28/addons/SaveManager.lua",
+      "sha256": "b6c1408cf88a2e8e3d09c7996fb367551cfb52df446b9c4025450a3e5597ab25",
+      "bytes": 35964
+    }
+  ],
+  "original_panel_sha256": "6fcb197f099073e3e8586aa24dd138fd6b46fb2f90c18c4368902f0078738141"
+}

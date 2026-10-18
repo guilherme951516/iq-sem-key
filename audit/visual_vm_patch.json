@@ -1,0 +1,38 @@
+{
+  "source_sha256": "04be74c22bb6d89a13c320f8a2c22619835a967512c104f3a92b4b5a834e6dda",
+  "result_sha256": "b75c54b9abb2145a19725f75eb8c6027aa4a2a0c7bc036888c34ee9683ccc460",
+  "functions_verified": 364,
+  "instruction_bytes_unchanged": true,
+  "changes": [
+    {
+      "prototype": 1,
+      "before": "https://keys.combowick.com/verify/provider-select",
+      "after": "https://github.com/guilherme951516/iq-sem-key/verify/provider-select"
+    },
+    {
+      "prototype": 1,
+      "before": "https://keys.combowick.com",
+      "after": "https://github.com/guilherme951516/iq-sem-key"
+    },
+    {
+      "prototype": 1,
+      "before": "Key required",
+      "after": "Consultar disponibilidade"
+    },
+    {
+      "prototype": 1,
+      "before": "Premium perk — unlock with a key",
+      "after": "Personalize o tema do painel"
+    },
+    {
+      "prototype": 1,
+      "before": "Precisa de chave",
+      "after": "Consultar disponibilidade"
+    },
+    {
+      "prototype": 214,
+      "before": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/checkurasshole/Script/main/IQ\"))()",
+      "after": "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/guilherme951516/iq-sem-key/main/IQ.lua\"))()"
+    }
+  ]
+}

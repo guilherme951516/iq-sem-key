@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-18T22:06:36.343781+00:00",
+  "resolver_tests_passed": 12,
+  "panel_integration_scenarios_passed": 2,
+  "own_modules_compiled": [
+    "IQ.lua",
+    "resolver.lua",
+    "panel.lua"
+  ],
+  "patched_visual_vm_compiled": true,
+  "visual_vm_functions_verified": 364,
+  "real_roblox_session_tested": false,
+  "game_payloads_executed_in_this_environment": false,
+  "key_validation_endpoint_called_by_our_flow": false,
+  "github_credential_in_published_files": false
+}
